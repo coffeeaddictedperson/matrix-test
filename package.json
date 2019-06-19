@@ -1,0 +1,41 @@
+{
+  "name": "Matrix",
+  "version": "0.0.1",
+  "description": "Matrix overview",
+  "main": "build.js",
+  "scripts": {
+    "open": "node index.js",
+    "watch": "webpack --mode development --watch",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coffeeaddictedperson/matrix.git"
+  },
+  "engines": {
+    "node": ">=8.9.4"
+  },
+  "keywords": [
+    "Matrix"
+  ],
+  "author": "Tash Ka",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2016": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "chalk": "^2.4.1",
+    "copy-webpack-plugin": "^5.0.3",
+    "fs-extra": "^7.0.0",
+    "html-loader": "^0.5.5",
+    "open": "^6.3.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "webpack": "^4.16.1",
+    "webpack-cli": "^3.3.4"
+  }
+}
