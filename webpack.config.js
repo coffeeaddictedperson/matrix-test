@@ -1,10 +1,11 @@
-const path = require("path"),
-    CopyPlugin = require("copy-webpack-plugin");
+const path = require("path");
+const CopyPlugin = require("copy-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
+    mode: 'development',
     entry: {
-        // js
-        index: "./src/js/entries/index.entry.js"
+        index: ["./src/js/entries/index.entry.js", "./src/scss/main.scss"]
     },
     output: {
         filename: "./js/[name].bundle.js",
@@ -17,6 +18,26 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: ['babel-loader']
+            },
+            {
+                test: /\.scss$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '/css/[name].css',
+                        }
+                    },
+                    {
+                        loader: 'extract-loader'
+                    },
+                    {
+                        loader: 'css-loader?-url'
+                    },
+                    {
+                        loader: 'sass-loader'
+                    }
+                ]
             }
         ]
     },
@@ -24,6 +45,12 @@ module.exports = {
         new CopyPlugin([
             { from: './src/html/index.html', to: './index.html' }
         ]),
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: "[name].css",
+            chunkFilename: "[id].css"
+        })
     ],
     resolve: {
         extensions: ['*', '.js', '.jsx'],

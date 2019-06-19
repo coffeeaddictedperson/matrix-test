@@ -1,0 +1,25 @@
+@import "colors";
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: $main-color;
+}
+
+h1 {
+  font-size: 1.4em;
+  line-height: 1.2em;
+  margin-bottom: 1.2em;
+}
+
+h2, h3 {
+  font-size: 1.2em;
+  line-height: 1.2em;
+}
+
+.main {
+  width: 1200px;
+  max-width: 90%;
+  min-width: 800px;
+  margin: 0 auto;
+}
