@@ -1,11 +1,22 @@
 $cell-size: 25px;
+.component-matrixContainer {
+    display: inline-block;
+    vertical-align: middle;
+    white-space: nowrap;
+    margin: 20px;
+
+}
+.component-matrixRatio {
+    display: inline-block;
+    vertical-align: middle;}
 .component-matrix {
     display: inline-block;
-    margin: 20px;
+    vertical-align: middle;
     border-left: $main-color 1px solid;
     border-right: $main-color 1px solid;
     border-radius: 5px;
     padding: 5px;
+    margin: 10px;
     min-width: $cell-size;
     min-height: $cell-size;
     line-height: $cell-size;
@@ -16,4 +27,8 @@ $cell-size: 25px;
     height: $cell-size;
     line-height: $cell-size;
     text-align: center;
+}
+.component-operand {
+    display: inline-block;
+    vertical-align: middle;
 }

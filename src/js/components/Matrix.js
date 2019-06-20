@@ -2,47 +2,47 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MatrixCell from './MatrixCell'
 class Matrix extends React.Component{
-    constructor(){
-        super();
-
-        this._testDimension = [
-            [0, -6, 9, 12],
-            [0, 9, 12, 120],
-            [0, -6, 9, 12],
-            [0, -6, 9, 12]
-        ];
-    }
-
-
     render(){
-        if(!this._hasEqualRowSize()) return (<div className="component-matrix">Invalid row sizes</div>);
-
+        if(!this._hasEqualRowSize()) return (<div className="component-matrix">Invalid matrix values</div>);
         return (
-            <div className="component-matrix">
-                <table>
-                {this._testDimension.map((row, rowKey) => {
-                   const Rows = row.map((cell, key) => <MatrixCell key={rowKey + '' + key} readOnly={true} value={cell}/>);
-                   return (<tr>{Rows}</tr>);
-                })}
-                </table>
+            <div className="component-matrixContainer">
+                {this._getRatioComponent()}
+                <div className="component-matrix">
+                    <table>
+                        <tbody>
+                            {this.props.values.map((row, rowKey) => {
+                                return (<tr key={rowKey}>{
+                                   Array.isArray(row)
+                                    ? row.map((cell, key) => <MatrixCell key={rowKey + '' + key} readOnly={true} value={cell}/>)
+                                    : <MatrixCell key={rowKey} readOnly={true} value={row}/>
+                                }</tr>);
+                            })}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         );
     }
 
+    _getRatioComponent(){
+        if(typeof this.props.ratio === 'undefined'
+            || this.props.ratio === 1) return '';
+        return(<div className="component-matrixRatio">{this.props.ratio}</div>);
+    }
+
     _hasEqualRowSize(){
-        let firstRowLen = this._testDimension[0].length;
-        return !this._testDimension.find(row => row.length !== firstRowLen);
+        let firstRowLen = this.props.values && this.props.values[0].length;
+        return !this.props.values.find(row => row.length !== firstRowLen);
     }
 }
 
 Matrix.defaultProps = {
-    rows: 1,
-    cols: 1
+    values: [1]
 };
 
 Matrix.propTypes = {
-    rows: PropTypes.number,
-    cols: PropTypes.number
+    values: PropTypes.array,
+    ratio: PropTypes.number
 };
 
 export default Matrix;
